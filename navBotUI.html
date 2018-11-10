@@ -23,9 +23,17 @@
 				//append the new message
 				div.appendChild(newParagraph);
 				userIn.value="";
+				
+				div.scrollTop = div.scrollHeight
+				
+				document.getElementById(userIn.id).focus();
+				document.getElementById(userIn.id).select();
+				
 			}
-		</script>
-		<script type="text/javascript">
+			function cursorReset() {
+				document.getElementById(userIn.id).focus();
+				document.getElementById(userIn.id).select();
+			}
 			function botAppend() {
 			
 				//count += 1;
@@ -49,8 +57,6 @@
 				div.appendChild(newParagraph)
 				
 			}
-		</script>
-		<script type="text/javascript">
 			function printButton() {
 			
 				//count += 1;
@@ -85,6 +91,21 @@
 				div.appendChild(noButton);
 				
 			}
+			function enterInput() {
+				// Get the input field
+				var input = document.getElementById("myInput");
+
+				// Execute a function when the user releases a key on the keyboard
+				input.addEventListener("keyup", function(event) {
+				  // Cancel the default action, if needed
+				  event.preventDefault();
+				  // Number 13 is the "Enter" key on the keyboard
+				  if (event.keyCode === 13) {
+					// Trigger the button element with a click
+					document.getElementById("myBtn").click();
+				  }
+				});
+			}
 		</script>
 	</head>
 	<body>
@@ -96,7 +117,25 @@
 			<p id="botPara">Macs: How can I help you?</p>
 		</div>
 		<div id="input">
-			<input id="userIn" type="text" name="userInput"><input type="button" onclick="youAppend()" value="Send"/>
+			<input id="userIn" type="text" name="userInput"><input id="myButton" type="button" onclick="youAppend()" value="Send"/>
+			
+			<script>
+				cursorReset();
+			
+				// Get the input field
+				var input = document.getElementById("userIn");
+
+				// Execute a function when the user releases a key on the keyboard
+				input.addEventListener("keyup", function(event) {
+				  // Cancel the default action, if needed
+				  event.preventDefault();
+				  // Number 13 is the "Enter" key on the keyboard
+				  if (event.keyCode === 13) {
+					// Trigger the button element with a click
+					document.getElementById("myButton").click();
+				  }
+				});
+			</script>
 		</div>
 	</div>
 	</body>
