@@ -71,7 +71,7 @@ public class StringAnalysis {
         String[][] allUrls = new String[100][100];
 
         for(int i = 0; i < 100; i++){
-            allUrls[i] = new urlScraper(keywords[i], 28, 0).collectURLs();
+            allUrls[i] = new urlScraper(keywords[i], 13, 0).collectURLs();
         }
 
         System.out.println(allUrls.toString());
