@@ -68,15 +68,17 @@ public class StringAnalysis {
         //Jack and Hester put your shit here
         keywords = keywordFinder(input);
 
-        String[][] allUrls = new String[100][100];
+        String[] allUrls = new String[100];
 
         for(int i = 0; i < 100; i++){
-            allUrls[i] = new urlScraper(keywords[i], 13, 0).collectURLs();
+            if (currentKeywords[i] != null) {
+                allUrls = new urlScraper(currentKeywords[i], 13, 0).collectURLs();
+            }
         }
 
-        System.out.println(allUrls.toString());
+        System.out.println(returnString(sortURLs(allUrls, allUrls)));
 
-        return allUrls[0][0];
+        return allUrls[0];
     }
 
     private String[] sortURLs(String[] articleURLs, String[] forumURLs) {
@@ -88,7 +90,7 @@ public class StringAnalysis {
     }
 
     private String returnString(String[] urls) {
-        return "Here are some articles and forum posts that you might find useful:\n\n" + urls[0] + "\n" + urls[1] + "\n" + urls[2] + "\n" + urls[3];
+        return "Here are some articles and forum posts that you might find useful:\n\nArticles:\n" + urls[0] + "\n" + urls[1] + "\n\nForum Posts:\n" + urls[2] + "\n" + urls[3];
     }
 
     private boolean characterCount(String input) {
@@ -100,16 +102,12 @@ public class StringAnalysis {
         input = input.toLowerCase();
         String[] holder = input.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
         int length = holder.length;
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < keywords.length; i++) {
             for (int j = 0; j < length; j++) {
                 if (holder[j].equals(keywords[i])) {
-                    currentKeywords[index] = keywords[i];
-                    index++;
+                    currentKeywords[index++] = keywords[i];
                 }
             }
-        }
-        for (int i = 0; i < 100; i++) {
-            System.out.println(currentKeywords[i]);
         }
         return currentKeywords;
     }
