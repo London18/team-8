@@ -3,6 +3,9 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringAnalysis {
 
@@ -26,6 +29,7 @@ public class StringAnalysis {
 
     //category definitions
     private String[] categories = new String[50];
+
     private void categoryDefinitions() {
         categories[0] = "Abuse";
         categories[1] = "Bereavement";
@@ -80,8 +84,8 @@ public class StringAnalysis {
         return input.length() < 20;
     }
 
-    public void articleSearch(String keyword){
-        String url = "https://www.themix.org.uk/wp-json/wp/v2/posts?categories=28&search=";
+    public void articleSearch(String keyword, int category){
+        String url = "https://www.themix.org.uk/wp-json/wp/v2/posts?categories=" + category + "&search=";
 
         constructAPICall(keyword, url);
     }
@@ -111,13 +115,28 @@ public class StringAnalysis {
             BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
 
             String textFromPage;
-            while ((textFromPage = in.readLine()) != null){
-                System.out.println(textFromPage);
-            }
-            in.close();
+            textFromPage = in.readLine();
+
+            ArrayList<String> allURLs = pullURLs(textFromPage);
+            System.out.println(allURLs.get(0));
         }
         catch (Exception E){
             System.err.println(E);
         }
+    }
+
+    public ArrayList<String> pullURLs(String text){
+
+        ArrayList<String> extractedURLs = new ArrayList<>();
+
+        String urlRegex = "((https?|ftp|gopher|telnet|file):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
+        Pattern pattern = Pattern.compile(urlRegex, Pattern.CASE_INSENSITIVE);
+        Matcher urlMatcher = pattern.matcher(text);
+
+        while (urlMatcher.find()){
+            extractedURLs.add(text.substring(urlMatcher.start(0), urlMatcher.end(0)));
+        }
+
+        return extractedURLs;
     }
 }
