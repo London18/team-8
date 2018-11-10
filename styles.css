@@ -1,8 +1,8 @@
 	#all{
-		width: 30%;
+		width: 25%;
 		position: fixed;
 		bottom: 0;
-		right: 0;
+		right: 20px;
 		
 		
 	}
@@ -28,6 +28,10 @@
 		background-color: white;
 		color: black;
 		font-size: 14px;
+		overflow-x: scroll;
+		overflow-x: hidden;
+		max-height: 200px;
+		height: 200px;
 		
 	}
 	
