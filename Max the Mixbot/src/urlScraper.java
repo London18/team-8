@@ -70,7 +70,7 @@ public class urlScraper {
             urlToArray(allURLs);
         }
         catch (Exception E){
-            System.err.println(E);
+
         }
     }
 

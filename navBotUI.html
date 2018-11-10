@@ -6,7 +6,7 @@
 			function youAppend() {
 				//var newText = document.createTextNode(document.getElementById('userIn').value);
 
-				//int count = 0;
+				int count = 0;
 				//var para = document.getElementById("messagePara");
 				
 				//creates new paragraph
@@ -80,36 +80,44 @@
 			}
 			function printButton() {
 			
-				//count += 1;
+				count += 1;
 				//var newText = document.createTextNode(document.getElementById('userIn').value);
 
 				//var para = document.getElementById("messagePara");
 				
+				if (count == 3){
 				
-				var newParagraph = document.createElement('p');
-				newParagraph.id = "botPara";
+					newParagraph.append("Sorry but it seems like I can't help right now, I'll refer you to a real person. Please hang on!");
+					//Send special string to ya bois in the backend
 				
-				//creates new paragraph
-				var yesButton = document.createElement('input');
-				yesButton.id = "yesButton";
-				yesButton.type = "button";
-				yesButton.value = "yes";
-				//do input thing
-				var noButton = document.createElement('input');
-				noButton.id = "noButton";
-				noButton.type = "button";
-				noButton.value = "no";
+				}else{
 				
-				//inserts Macs' text
-				newParagraph.append("Macs: Were any of these resources helpful?");
-				
-				//find the div to put it in
-				var div = document.getElementById("messages");
-				
-				//append the new message
-				div.appendChild(newParagraph);
-				div.appendChild(yesButton);
-				div.appendChild(noButton);
+					
+					var newParagraph = document.createElement('p');
+					newParagraph.id = "botPara";
+					
+					//creates new paragraph
+					var yesButton = document.createElement('input');
+					yesButton.id = "yesButton";
+					yesButton.type = "button";
+					yesButton.value = "yes";
+					//do input thing
+					var noButton = document.createElement('input');
+					noButton.id = "noButton";
+					noButton.type = "button";
+					noButton.value = "no";
+					
+					//inserts Macs' text
+					newParagraph.append("Macs: Were any of these resources helpful?");
+					
+					//find the div to put it in
+					var div = document.getElementById("messages");
+					
+					//append the new message
+					div.appendChild(newParagraph);
+					div.appendChild(yesButton);
+					div.appendChild(noButton);
+				}
 				
 			}
 			function enterInput() {
