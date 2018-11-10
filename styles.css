@@ -6,7 +6,7 @@
 		border: 1px solid #075384;
 		border-radius: 10px;
 		margin-bottom: 10px;
-		
+		font: "Arial";
 	}
 	
 	#header{
@@ -38,7 +38,7 @@
 	
 	#youPara{
 		text-align: left;
-		border: 1px solid black;
+		border: 2px solid black;
 		border-radius: 50px;
 		background-color: #075384; 
 		float: right;
