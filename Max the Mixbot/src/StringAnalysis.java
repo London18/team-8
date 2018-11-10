@@ -1,17 +1,13 @@
-package CodeForPizza.NavBot;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URI;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
 public class StringAnalysis {
-
-    @RequestMapping("/chat")
-    public String processChat(@RequestParam(value="userInput", defaultValue="default") String userInput) {
-        StringAnalysis test = new StringAnalysis();
-        return test.analyseString(userInput);
-    }
 
     //keywords from user input
     private String[] currentKeywords = new String[100];
@@ -57,6 +53,11 @@ public class StringAnalysis {
         categories[15] = "Sexuality";
         categories[16] = "Self Harm";
         //etc
+    }
+
+    public static void main(String[] args) {
+        StringAnalysis test = new StringAnalysis();
+        test.analyseString(args[0]);
     }
 
     public String analyseString(String input) {
