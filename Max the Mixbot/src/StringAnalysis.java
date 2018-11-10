@@ -52,9 +52,8 @@ public class StringAnalysis {
     }
 
     public static void main(String[] args) {
-        StringAnalysis test = new StringAnalysis();
-        String returnString = test.analyseString(args[0]);
-        // send returnString back to front end
+
+
     }
 
     public String analyseString(String input) {

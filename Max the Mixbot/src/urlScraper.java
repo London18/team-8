@@ -93,6 +93,7 @@ public class urlScraper {
 
         for(int i = 0; i < allURLs.size(); i++){
             urls[i] = allURLs.get(i);
+            urls[i] = urls[i].replace("\\", "");
         }
     }
 }
