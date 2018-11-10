@@ -55,7 +55,7 @@ public class StringAnalysis {
 
     public static void main(String[] args) {
         StringAnalysis test = new StringAnalysis();
-        test.analyseString(args[0]);
+        test.analyseString("i have depression and it sucks");
     }
 
     public String analyseString(String input) {
@@ -66,10 +66,17 @@ public class StringAnalysis {
         this.categoryDefinitions();
 
         //Jack and Hester put your shit here
-        String[] articleURLs = new String[100];
-        String[] forumURLs = new String[100];
+        keywords = keywordFinder(input);
 
-        return this.returnString(this.sortURLs(articleURLs, forumURLs));
+        String[][] allUrls = new String[100][100];
+
+        for(int i = 0; i < 100; i++){
+            allUrls[i] = new urlScraper(keywords[i], 28, 0).collectURLs();
+        }
+
+        System.out.println(allUrls.toString());
+
+        return allUrls[0][0];
     }
 
     private String[] sortURLs(String[] articleURLs, String[] forumURLs) {
@@ -88,7 +95,7 @@ public class StringAnalysis {
         return input.length() < 20;
     }
 
-    public String[] keyWordFinder(String input) {
+    public String[] keywordFinder(String input) {
         int index = 0;
         input = input.toLowerCase();
         String[] holder = input.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
@@ -106,4 +113,6 @@ public class StringAnalysis {
         }
         return currentKeywords;
     }
+
+
 }

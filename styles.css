@@ -36,11 +36,20 @@
 	}
 	
 	#youPara{
-		text-align: right;
+		text-align: left;
+		border: 1px solid black;
+		border-radius: 50px;
+		background-color: #075384; 
+		float: right;
+		width: 50%;
 		
 	}
 	#messages.botPara{
 		text-align: right;
+		border-radius: 25px;
+		border: 2px solid #73AD21;
+		background-color: gray; 
+		width: 50px;
 		
 	}
 	
