@@ -1,6 +1,16 @@
-
+	body{
+		width: 30%;
+		height: 40%;
+		position: fixed;
+		bottom: 0;
+		right: 0;
+	}
 	
 	#header{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding-top: 0px;
+		padding-bottom: 0px;
 		font-family: "Arial", sans-serif;
 		color: white;
 		background-color: #075384;
@@ -9,13 +19,21 @@
 	}
 	
 	#messages{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding-top: 0px;
+		padding-bottom: 0px;
 		font-family: "Arial", sans-serif;
 		background-color: white;
-		color: white;
+		color: black;
 		font-size: 14px;
 	}
 	
 	#input{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding-top: 0px;
+		padding-bottom: 0px;
 		font-family: "Arial", sans-serif;
 		color: white;
 		background-color: #075384;
