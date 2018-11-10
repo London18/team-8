@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
 
 public class StringAnalysis {
 
-    //keywords from user input
-    private String[] currentKeywords = new String[100];
     //keyword definitions
     private String[] keywords = new String[100]; // manual for now - could be automatically updated later?
     private void keywordDefinitions() {
@@ -54,8 +52,7 @@ public class StringAnalysis {
     }
 
     public static void main(String[] args) {
-        StringAnalysis test = new StringAnalysis();
-        test.analyseString(args[0]);
+
     }
 
     public String analyseString(String input) {
@@ -81,30 +78,10 @@ public class StringAnalysis {
     }
 
     private String returnString(String[] urls) {
-        return "Here are some articles and forum posts that you might find useful:\n\n" + urls[0] + "\n" + urls[1] + "\n" + urls[2] + "\n" + urls[3];
+        return "Here are some articles and forum posts that you might find useful:\n\nArticles:\n" + urls[0] + "\n" + urls[1] + "\n\nForum results:\n" + urls[2] + "\n" + urls[3];
     }
 
     private boolean characterCount(String input) {
         return input.length() < 20;
     }
-
-    public String[] keyWordFinder(String input) {
-        int index = 0;
-        input = input.toLowerCase();
-        String[] holder = input.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
-        int length = holder.length;
-        for (int i=0; i<100; i++) {
-            for (int j=0; j<length; j++) {
-                if (holder[j].equals(keywords[i])) {
-                    currentKeywords[index] = keywords[i];
-                    index++;
-                }
-            }
-        }
-        for (int i=0; i<100; i++) {
-            System.out.println(currentKeywords[i]);
-        }
-        return currentKeywords;
-
-
 }
