@@ -9,8 +9,6 @@ import java.util.regex.Pattern;
 
 public class StringAnalysis {
 
-    //keywords from user input
-    private String[] currentKeywords = new String[100];
     //keyword definitions
     private String[] keywords = new String[100]; // manual for now - could be automatically updated later?
     private void keywordDefinitions() {
@@ -69,7 +67,6 @@ public class StringAnalysis {
         //Jack and Hester put your shit here
         String[] articleURLs = new String[100];
         String[] forumURLs = new String[100];
-        this.keyWordFinder(input);
 
         return this.returnString(this.sortURLs(articleURLs, forumURLs));
     }
@@ -88,77 +85,5 @@ public class StringAnalysis {
 
     private boolean characterCount(String input) {
         return input.length() < 20;
-    }
-
-    public void articleSearch(String keyword, int category){
-        String url = "https://www.themix.org.uk/wp-json/wp/v2/posts?categories=" + category + "&search=";
-
-        constructAPICall(keyword, url);
-    }
-
-    public void forumSearch(String keyword){
-        String url = "";
-
-        constructAPICall(keyword, url);
-    }
-
-    public void constructAPICall(String searchTerm, String searchURL){
-
-        //Sets the https statement to be processed based on current API.
-        String search = searchURL + searchTerm;
-
-        //Constructs HTTP object
-        HttpURLConnection connection = null;
-
-        try{
-            URI uri = new URI(search);
-
-            URL url = new URL(uri.toURL().toString());
-
-            connection = (HttpURLConnection) url.openConnection();
-            connection.connect();
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            String textFromPage;
-            textFromPage = in.readLine();
-
-            ArrayList<String> allURLs = pullURLs(textFromPage);
-            System.out.println(allURLs.get(0));
-        }
-        catch (Exception E){
-            System.err.println(E);
-        }
-    }
-
-    public String[] keyWordFinder(String input) {
-        int index = 0;
-        input = input.toLowerCase();
-        String[] holder = input.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
-        int length = holder.length;
-        for (int i=0; i<100; i++) {
-            for (int j=0; j<length; j++) {
-                if (holder[j].equals(keywords[i])) {
-                    currentKeywords[index] = keywords[i];
-                    index++;
-                }
-            }
-        }
-        return currentKeywords;
-    }
-
-    public ArrayList<String> pullURLs(String text){
-
-        ArrayList<String> extractedURLs = new ArrayList<>();
-
-        String urlRegex = "((https?|ftp|gopher|telnet|file):((//)|(\\\\))+[\\w\\d:#@%/;$()~_?\\+-=\\\\\\.&]*)";
-        Pattern pattern = Pattern.compile(urlRegex, Pattern.CASE_INSENSITIVE);
-        Matcher urlMatcher = pattern.matcher(text);
-
-        while (urlMatcher.find()){
-            extractedURLs.add(text.substring(urlMatcher.start(0), urlMatcher.end(0)));
-        }
-
-        return extractedURLs;
     }
 }
