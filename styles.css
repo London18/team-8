@@ -61,10 +61,12 @@ html {
 		
 	}
 	#yesButton {
+		margin-left: 10px;
 		margin-top: 35px;
 		float:left;
 	}
 	#noButton {
+		margin-left: 5px;
 		margin-top: 35px;
 		float:left;
 	}
@@ -80,6 +82,12 @@ html {
 		padding-bottom: 5px;
 		padding-top: 5px;
 		font-size: 14px;
+		
+	}
+	
+	#myButton{
+		
+		margin-left: 15px;
 		
 	}
 	
