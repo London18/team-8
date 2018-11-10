@@ -65,15 +65,15 @@ public class StringAnalysis {
         return this.returnString(this.sortURLs(urls));
     }
 
-    private String[] sortURLs(String[] urls) {
+    private String[] sortURLs(String[] articleURLs, String[] forumURLs) {
         // later - rank importance of URLs by severity
         // now - rank by number of times keyword occurs, then order
 
-        return new String[]{urls[0], urls[1]};
+        return new String[]{articleURLs[0], articleURLs[1], forumURLs[0], forumURLs[1]};
     }
 
     private String returnString(String[] urls) {
-        return urls[0];
+        return "Here are some articles and forum posts that you might find useful:\n\n" + urls[0] + "\n" + urls[1] + "\n" + urls[2] + "\n" + urls[3];
     }
 
     private boolean characterCount(String input) {
