@@ -11,25 +11,17 @@
 				
 				//creates new paragraph
 				var newParagraph = document.createElement('p');
+				newParagraph.id = "youPara";
+				
 				//inserts user's text
 				newParagraph.textContent = document.getElementById('userIn').value;
+				newParagraph.prepend("You: ");
 				
 				//find the div to put it in
 				var div = document.getElementById("messages");
-				//add the new paragraph
-				var lastChild = div.lastChild;
 				
-				//doc.body.appendChild(newParagraph);
-				lastChild.appendChild(newParagraph);
-				//document.getElementById("updateDiv").appendChild(iframe);
-				
-				
-				
-				//var container = document.getElementById('messagePara');
-				//container.insertAfter(document.createElement("p"), container.LastChild);
-				//$("<span>Hello world!</span>").insertAfter("p");
-
-				//$('userIn').append('<p>Test</p>');
+				//append the new message
+				div.appendChild(newParagraph);
 				userIn.value="";
 				
 			}
