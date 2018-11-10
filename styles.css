@@ -27,6 +27,16 @@
 		background-color: white;
 		color: black;
 		font-size: 14px;
+		
+	}
+	
+	#messages.youPara{
+		text-align: right;
+		
+	}
+	#messages.botPara{
+		text-align: right;
+		
 	}
 	
 	#input{
