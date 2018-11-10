@@ -1,9 +1,10 @@
-	body{
+	#all{
 		width: 30%;
-		height: 40%;
 		position: fixed;
 		bottom: 0;
 		right: 0;
+		
+		
 	}
 	
 	#header{
@@ -49,6 +50,7 @@
 		background-color: #075384;
 		text-align: center;
 		font-size: 14px;
+		
 	}
 	
 	

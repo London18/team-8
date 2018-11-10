@@ -70,11 +70,14 @@ public class StringAnalysis {
     }
 
     private String[] sortURLs(String[] urls) {
-        return urls;
+        // later - rank importance of URLs by severity
+        // now - rank by number of times keyword occurs, then order
+
+        return new String[]{urls[0], urls[1]};
     }
 
     private String returnString(String[] urls) {
-        return urls;
+        return urls[0];
     }
 
     private boolean characterCount(String input) {
