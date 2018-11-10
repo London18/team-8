@@ -3,14 +3,35 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 		<script type="text/javascript">
-			function append(divName) {
-				var newText = document.createTextNode(document.getElementById('userIn').value);
+			function append() {
+				//var newText = document.createTextNode(document.getElementById('userIn').value);
 
-				var para = document.getElementById("messagePara");
-
-				para.appendChild(newText);
+				//var para = document.getElementById("messagePara");
 				
+				
+				//creates new paragraph
+				var newParagraph = document.createElement('p');
+				//inserts user's text
+				newParagraph.textContent = document.getElementById('userIn').value;
+				
+				//find the div to put it in
+				var div = document.getElementById("messages");
+				//add the new paragraph
+				var lastChild = div.lastChild;
+				
+				//doc.body.appendChild(newParagraph);
+				lastChild.appendChild(newParagraph);
+				//document.getElementById("updateDiv").appendChild(iframe);
+				
+				
+				
+				//var container = document.getElementById('messagePara');
+				//container.insertAfter(document.createElement("p"), container.LastChild);
+				//$("<span>Hello world!</span>").insertAfter("p");
+
+				//$('userIn').append('<p>Test</p>');
 				userIn.value="";
+				
 			}
 		</script>
 	</head>
