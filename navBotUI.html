@@ -30,8 +30,23 @@
 				div.scrollTop = div.scrollHeight
 				
 				document.getElementById(userIn.id).focus();
-				document.getElementById(userIn.id).select();				
+				document.getElementById(userIn.id).select();	
+
+				//put the thing=== that get files from java and also get response from them
+				sendToJava();
+				var resultPara = document.createElement('p');
+				var textToPrint = getFromJava();
+				resultPara.id = 'botIn';
+				botAppend();
+				
 			}
+			function sendToJava() {
+				
+			}
+			function getFromJava() {
+				return(request.getAttribute("user"));
+			}
+			
 			function autoGrow(element) {
 				element.style.height = "5px";
 				element.style.height = (element.scrollHeight) + "px";
