@@ -49,15 +49,28 @@ public class StringAnalysis {
 
     public static void main(String[] args) {
         StringAnalysis test = new StringAnalysis();
-        test.keywordDefinitions();
-        test.categoryDefinitions();
+        test.analyseString(args[0]);
     }
 
     public String analyseString(String input) {
         //call all other methods from this
         if (characterCount(input))
             return "Could you explain a bit more?";
-        return input;
+        this.keywordDefinitions();
+        this.categoryDefinitions();
+
+        //Jack and Hester put your shit here
+        String[] urls = new String[100];
+
+        return this.returnString(this.sortURLs(urls));
+    }
+
+    private String[] sortURLs(String[] urls) {
+        return urls;
+    }
+
+    private String returnString(String[] urls) {
+        return urls;
     }
 
     private boolean characterCount(String input) {
@@ -76,7 +89,7 @@ public class StringAnalysis {
         constructAPICall(keyword, url);
     }
 
-    public void  constructAPICall(String searchTerm, String searchURL){
+    public void constructAPICall(String searchTerm, String searchURL){
 
         //Sets the https statement to be processed based on current API.
         String search = searchURL + searchTerm;
