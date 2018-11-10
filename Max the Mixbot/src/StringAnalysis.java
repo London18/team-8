@@ -2,7 +2,6 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
-
 public class StringAnalysis {
 
     //keyword definitions
@@ -31,7 +30,13 @@ public class StringAnalysis {
 
     public String analyseString(String input) {
         //call all other methods from this
+        if (characterCount(input))
+            return "Could you explain a bit more?";
         return input;
+    }
+
+    private boolean characterCount(String input) {
+        return input.length() < 20;
     }
 
     public void  constructArticleAPICallSearchTerm(String searchTerm){
