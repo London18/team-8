@@ -1,16 +1,30 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script type="text/javascript">
+			function append(divName) {
+				var newText = document.createTextNode(document.getElementById('userIn').value);
+
+				var para = document.getElementById("messagePara");
+
+				para.appendChild(newText);
+				
+				userIn.value="";
+			}
+		</script>
 	</head>
 	<body>
-	<div id="header">
-		<h5>NavBot</h5>
-	</div>
-	<div id="messages">
-		<p>messages here</p>
-	</div>
-	<div id="input">
-		<input type="text" name="userInput">
+	<div id="all">
+		<div id="header">
+			<h5>NavBot</h5>
+		</div>
+		<div id="messages">
+			<p id="messagePara">messages here</p>
+		</div>
+		<div id="input">
+			<input id="userIn" type="text" name="userInput"><input type="button" onclick="append()" value="Send"/>
+		</div>
 	</div>
 	</body>
 </html>

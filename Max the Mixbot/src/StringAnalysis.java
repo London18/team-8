@@ -4,7 +4,6 @@ import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
 
-
 public class StringAnalysis {
 
     //keyword definitions
@@ -25,15 +24,44 @@ public class StringAnalysis {
         //etc.
     }
 
+    //category definitions
+    private String[] categories = new String[50];
+    private void categoryDefinitions() {
+        categories[0] = "Abuse";
+        categories[1] = "Bereavement";
+        categories[2] = "Care";
+        categories[3] = "Careers & Study";
+        categories[4] = "Child Care";
+        categories[5] = "Disability Support";
+        categories[6] = "Domestic Violence";
+        categories[7] = "Drugs & Alcohol";
+        categories[8] = "Relationships";
+        categories[9] = "General Health";
+        categories[10] = "Housing";
+        categories[11] = "Legal & Rights";
+        categories[12] = "Mental Health";
+        categories[13] = "Money";
+        categories[14] = "Sexual Health";
+        categories[15] = "Sexuality";
+        categories[16] = "Self Harm";
+        //etc
+    }
+
     public static void main(String[] args) {
         StringAnalysis test = new StringAnalysis();
-
-
+        test.keywordDefinitions();
+        test.categoryDefinitions();
     }
 
     public String analyseString(String input) {
         //call all other methods from this
+        if (characterCount(input))
+            return "Could you explain a bit more?";
         return input;
+    }
+
+    private boolean characterCount(String input) {
+        return input.length() < 20;
     }
 
     public void articleSearch(String keyword){
