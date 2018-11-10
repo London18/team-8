@@ -26,6 +26,8 @@ public class StringAnalysis {
         keywords[9] = "parents";
         keywords[10] = "died";
         keywords[11] = "uni";
+        keywords[12] = "cash";
+        keywords[13] = "poor";
         //etc.
     }
 
@@ -65,20 +67,21 @@ public class StringAnalysis {
         this.keywordDefinitions();
         this.categoryDefinitions();
 
-        //Jack and Hester put your shit here
-        keywords = keywordFinder(input);
+        keywordFinder(input); //finds keywords in input
 
         String[] allUrls = new String[100];
+        int categoryInference = categoryInference();
 
-        for(int i = 0; i < 100; i++){
+        for(int i = 0; i < allUrls.length; i++){
             if (currentKeywords[i] != null) {
-                allUrls = new urlScraper(currentKeywords[i], 13, 0).collectURLs();
+                allUrls = new urlScraper(currentKeywords[i], categoryInference, 0).collectURLs();
             }
         }
 
-        System.out.println(returnString(sortURLs(allUrls, allUrls)));
+        String returnString = returnString(sortURLs(allUrls, allUrls));
 
-        return allUrls[0];
+        System.out.println(returnString);
+        return returnString;
     }
 
     private String[] sortURLs(String[] articleURLs, String[] forumURLs) {
@@ -117,37 +120,37 @@ public class StringAnalysis {
      */
     private int categoryInference() {
         int[] categoryCount = new int[30];
-        for (int i=0; i<currentKeywords.length; i++) {
-            if (currentKeywords!=null) {
-                if (currentKeywords[i]=="depression"||currentKeywords[i]=="anxiety"||currentKeywords[i]=="sleep") {
+        for (int i=0; i < currentKeywords.length; i++) {
+            if (currentKeywords[i]!=null) {
+                if (currentKeywords[i].equals("depression") || currentKeywords[i].equals("anxiety") || currentKeywords[i].equals("sleep")) {
                     categoryCount[12]++;
                 }
-                else if (currentKeywords[i]=="drugs"||currentKeywords[i]=="drink"||currentKeywords[i]=="alcohol") {
+                else if (currentKeywords[i].equals("drugs") || currentKeywords[i].equals("drink") || currentKeywords[i].equals("alcohol")) {
                     categoryCount[7]++;
                 }
-                else if (currentKeywords[i]=="housing") {
+                else if (currentKeywords[i].equals("housing")) {
                     categoryCount[10]++;
                 }
-                else if (currentKeywords[i]=="food") {
-                    categoryCount[10]++;
+                else if (currentKeywords[i].equals("food")) {
+                    categoryCount[9]++;
                 }
-                else if (currentKeywords[i]=="money") {
+                else if (currentKeywords[i].equals("money") || currentKeywords[i].equals("cash") || currentKeywords[i].equals("poor")) {
                     categoryCount[13]++;
                 }
-                else if (currentKeywords[i]=="parents") {
+                else if (currentKeywords[i].equals("parents")) {
                     categoryCount[8]++;
                 }
-                else if (currentKeywords[i]=="died") {
+                else if (currentKeywords[i].equals("died")) {
                     categoryCount[1]++;
                 }
-                else if (currentKeywords[i]=="uni") {
+                else if (currentKeywords[i].equals("uni")) {
                     categoryCount[3]++;
                 }
             }
         }
         int highestNoOfCounts = 0;
-        int biggestCategory = -1;
-        for (int i=0; i<categoryCount.length; i++) {
+        int biggestCategory = 0;
+        for (int i=0; i < categoryCount.length; i++) {
             if (categoryCount[i] > highestNoOfCounts) {
                 highestNoOfCounts = categoryCount[i];
                 biggestCategory = i;
