@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
@@ -25,8 +27,8 @@ public class StringAnalysis {
 
     public static void main(String[] args) {
         StringAnalysis test = new StringAnalysis();
-        test.keywordDefinitions();
-        test.constructArticleAPICallSearchTerm("grief");
+
+
     }
 
     public String analyseString(String input) {
@@ -34,13 +36,24 @@ public class StringAnalysis {
         return input;
     }
 
-    public void  constructArticleAPICallSearchTerm(String searchTerm){
+    public void articleSearch(String keyword){
+        String url = "https://www.themix.org.uk/wp-json/wp/v2/posts?categories=28&search=";
+
+        constructAPICall(keyword, url);
+    }
+
+    public void forumSearch(String keyword){
+        String url = "";
+
+        constructAPICall(keyword, url);
+    }
+
+    public void  constructAPICall(String searchTerm, String searchURL){
 
         //Sets the https statement to be processed based on current API.
-        String coreStatement = "https://www.themix.org.uk/wp-json/wp/v2/posts?categories=28&search=";
-        String search = coreStatement + searchTerm;
+        String search = searchURL + searchTerm;
 
-        //Contructs HTTP object
+        //Constructs HTTP object
         HttpURLConnection connection = null;
 
         try{
@@ -51,6 +64,13 @@ public class StringAnalysis {
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
+            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
+
+            String textFromPage;
+            while ((textFromPage = in.readLine()) != null){
+                System.out.println(textFromPage);
+            }
+            in.close();
         }
         catch (Exception E){
             System.err.println(E);
