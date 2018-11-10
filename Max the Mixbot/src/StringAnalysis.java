@@ -93,18 +93,17 @@ public class StringAnalysis {
         input = input.toLowerCase();
         String[] holder = input.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
         int length = holder.length;
-        for (int i=0; i<100; i++) {
-            for (int j=0; j<length; j++) {
+        for (int i = 0; i < 100; i++) {
+            for (int j = 0; j < length; j++) {
                 if (holder[j].equals(keywords[i])) {
                     currentKeywords[index] = keywords[i];
                     index++;
                 }
             }
         }
-        for (int i=0; i<100; i++) {
+        for (int i = 0; i < 100; i++) {
             System.out.println(currentKeywords[i]);
         }
         return currentKeywords;
-
-
+    }
 }
