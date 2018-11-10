@@ -3,6 +3,7 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 		<script type="text/javascript">
+			var count = 0;
 			function youAppend() {
 				//var newText = document.createTextNode(document.getElementById('userIn').value);
 
@@ -37,8 +38,7 @@
 				sendToJava();
 				var resultPara = document.createElement('p');
 				var textToPrint = getFromJava();
-				resultPara.id = 'botIn';
-				botAppend();
+				botAppend(resultPara.id);
 				
 			}
 			function sendToJava(message) {
@@ -61,8 +61,12 @@
 				document.getElementById(userIn.id).focus();
 				document.getElementById(userIn.id).select();
 			}
-			function botAppend() {
+			function botAppend(message) {
 			
+			
+				document.getElementById('yesButton').style.display = 'none';
+				document.getElementById('noButton').style.display = 'none';
+					
 				//count += 1;
 				//var newText = document.createTextNode(document.getElementById('userIn').value);
 
@@ -74,7 +78,7 @@
 				newParagraph.className = "botPara";
 				
 				//inserts user's text
-				newParagraph.textContent = document.getElementById('botIn').value;
+				newParagraph.textContent = message;
 				newParagraph.prepend("Macs: ");
 				
 				//find the div to put it in
@@ -83,41 +87,35 @@
 				//append the new message
 				div.appendChild(newParagraph)
 				
+				div.scrollTop = div.scrollHeight
+				
+				document.getElementById(userIn.id).focus();
+				document.getElementById(userIn.id).select();
+				
 			}
 			function printButton() {
 			
-				//count += 1;
+				count += 1;
 				//var newText = document.createTextNode(document.getElementById('userIn').value);
 
 				//var para = document.getElementById("messagePara");
 				
-				//if(count == 3) {
-					//newParagraph.append("Sorry but it seems like I can't help you right now.  I'll refer you to a real person.  Please hang on");
-				//}
-				//else {
 					var newParagraph1 = document.createElement('p');
 					newParagraph1.className = "botPara";
 					
-					//creates new paragraph
-					var yesButton = document.createElement('input');
-					yesButton.id = "yesButton";
-					yesButton.type = "button";
-					yesButton.value = "yes";
-					var yesText = "Glad I could help!";
-					yesText.id = 'botIn';
-					yesButton.onclick = botAppend(); 
-					//send and emial to them if they wish in the future
+				if(count == 3) {
+					newParagraph1.append("Sorry but it seems like I can't help you right now.  I'll refer you to a real person.  Please hang on");
 					
-					//do input thing
-					var noButton = document.createElement('input');
-					noButton.id = "noButton";
-					noButton.type = "button";
-					noButton.value = "no";
-					var noText = "Please can you explain your problem a little more?";
-					noText.id = 'botIn';
-					//noButton.onclick = botAppend();
+					var div = document.getElementById("messages");
 					
-					//inserts Macs' text
+					//append the new message
+					div.appendChild(newParagraph1);
+				}
+				else {
+					
+					document.getElementById('yesButton').style.display = 'block';
+					document.getElementById('noButton').style.display = 'block';
+					
 					newParagraph1.append("Macs: Were any of these resources helpful?");
 					
 					//find the div to put it in
@@ -128,7 +126,7 @@
 					div.appendChild(yesButton);
 					div.appendChild(noButton);
 					
-				//}
+				}
 				
 			}
 			function enterInput() {
@@ -158,7 +156,8 @@
 		</div>
 		<div id="input">
 			<input id="userIn" type="text" name="userInput"><input id="myButton" type="button" onclick="youAppend()" value="Send"/>
-			
+			<button id="yesButton"  onclick='botAppend("Glad I could help!")' style="display: none">Yes</button>
+			<button id="noButton"  onclick='botAppend("Please can you explain your problem a little more?")' style="display: none">No</button>
 			<script>
 				cursorReset();
 			
