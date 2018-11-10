@@ -55,7 +55,7 @@ public class StringAnalysis {
 
     public static void main(String[] args) {
         StringAnalysis test = new StringAnalysis();
-        test.analyseString("i have depression and it sucks");
+        test.analyseString(args[0]);
     }
 
     public String analyseString(String input) {
@@ -114,5 +114,47 @@ public class StringAnalysis {
         return currentKeywords;
     }
 
-
+    /**
+     * This gives us a main category, given currentKeywords
+     */
+    private int categoryInference() {
+        int[] categoryCount = new int[30];
+        for (int i=0; i<currentKeywords.length; i++) {
+            if (currentKeywords!=null) {
+                if (currentKeywords[i]=="depression"||currentKeywords[i]=="anxiety"||currentKeywords[i]=="sleep") {
+                    categoryCount[12]++;
+                }
+                else if (currentKeywords[i]=="drugs"||currentKeywords[i]=="drink"||currentKeywords[i]=="alcohol") {
+                    categoryCount[7]++;
+                }
+                else if (currentKeywords[i]=="housing") {
+                    categoryCount[10]++;
+                }
+                else if (currentKeywords[i]=="food") {
+                    categoryCount[10]++;
+                }
+                else if (currentKeywords[i]=="money") {
+                    categoryCount[13]++;
+                }
+                else if (currentKeywords[i]=="parents") {
+                    categoryCount[8]++;
+                }
+                else if (currentKeywords[i]=="died") {
+                    categoryCount[1]++;
+                }
+                else if (currentKeywords[i]=="uni") {
+                    categoryCount[3]++;
+                }
+            }
+        }
+        int highestNoOfCounts = 0;
+        int biggestCategory = -1;
+        for (int i=0; i<categoryCount.length; i++) {
+            if (categoryCount[i] > highestNoOfCounts) {
+                highestNoOfCounts = categoryCount[i];
+                biggestCategory = i;
+            }
+        }
+        return biggestCategory;
+    }
 }
