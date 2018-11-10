@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+	</head>
+	<body>
+	<div id="all">
+		<div id="header">
+			<h5>NavBot</h5>
+		</div>
+		<div id="messages">
+			<p class="botPara">Macs: How can I help you?</p>
+		</div>
+		<div id="input">
+			<input id="userIn" type="text" name="userInput"><input id="myButton" type="button" onclick="enterInput()" value="Send"/>
+			<button id="yesButton"  onclick='botAppend("Glad I could help!")' style="display: none">Yes</button>
+			<button id="noButton"  onclick='botAppend("Please can you explain your problem a little more?")' style="display: none">No</button>
+			<script>
+				
+			</script>
+		</div>
+	</div>
+			<script type="text/javascript">
+			var count = 0;
+			function query(input) {
+				var stringQuery = "localhost:8080/chat?userInput=".concat(input);
+			
+				$(document).ready(function() {
+					$.ajax({
+						url: stringQuery
+					}).then(function(userInput) {
+						botAppend(userInput);
+					});
+				});
+			}
+			console.log('here');
+			function youAppend(message) {
+				//var newText = document.createTextNode(document.getElementById('userIn').value);
+
+				//int count = 0;
+				//var para = document.getElementById("messagePara");
+				
+				//creates new paragraph
+				var newParagraph = document.createElement('textarea');
+				newParagraph.className = "youPara";
+				
+				//inserts user's text
+				newParagraph.textContent = message;
+				newParagraph.prepend("You: ");
+				
+				//find the div to put it in
+				var div = document.getElementById("messages");
+				
+				//append the new message
+				div.appendChild(newParagraph);
+				
+				autoGrow(newParagraph);
+				
+				userIn.value="";
+				
+				div.scrollTop = div.scrollHeight
+				
+				document.getElementById(userIn.id).focus();
+				document.getElementById(userIn.id).select();	
+				
+				query(document.getElementById('userIn').value);
+				
+				//put the thing=== that get files from java and also get response from them
+				sendToJava();
+				var resultPara = document.createElement('p');
+				var textToPrint = getFromJava();
+				botAppend(resultPara.id);
+				
+				printButton();
+			}
+			function sendToJava(message) {
+				var form = document.createElement('form');
+				form.action = "sendMessage";
+				form.method = "post";
+				var input = document.createElement('input');
+				input.value = message;
+				
+			}
+			function getFromJava() {
+				return(request.getAttribute("user"));
+			}
+			
+			function autoGrow(element) {
+				element.style.height = "5px";
+				element.style.height = (element.scrollHeight) + "px";
+			}
+			function cursorReset() {
+				document.getElementById(userIn.id).focus();
+				document.getElementById(userIn.id).select();
+			}
+			function botAppend(message) {
+			
+			
+				document.getElementById('yesButton').style.display = 'none';
+				document.getElementById('noButton').style.display = 'none';
+					
+				if(message === "Glad I could help!") {
+					count = 0;
+					
+					//ask if they want to save the conversation and files
+					//if no then tell java then they delete
+					//if yes then send the email that the use inputs
+				}
+					
+				//count += 1;
+				//var newText = document.createTextNode(document.getElementById('userIn').value);
+
+				//var para = document.getElementById("messagePara");
+				
+				
+				//creates new paragraph
+				var newParagraph = document.createElement('p');
+				newParagraph.className = "botPara";
+				
+				//inserts user's text
+				newParagraph.textContent = message;
+				newParagraph.prepend("Macs: ");
+				
+				//find the div to put it in
+				var div = document.getElementById("messages");
+				
+				//append the new message
+				div.appendChild(newParagraph)
+				
+				div.scrollTop = div.scrollHeight
+				
+				document.getElementById(userIn.id).focus();
+				document.getElementById(userIn.id).select();
+			
+				
+			}
+			function printButton() {
+			
+				count += 1;
+				//var newText = document.createTextNode(document.getElementById('userIn').value);
+
+				//var para = document.getElementById("messagePara");
+				
+					var newParagraph1 = document.createElement('p');
+					newParagraph1.className = "botPara";
+					
+				if(count == 3) {
+					newParagraph1.append("Sorry but it seems like I can't help you right now.  I'll refer you to a real person.  Please hang on");
+					
+					var div = document.getElementById("messages");
+					
+					//append the new message
+					div.appendChild(newParagraph1);
+				}
+				else {
+					
+					document.getElementById('yesButton').style.display = 'block';
+					document.getElementById('noButton').style.display = 'block';
+					
+					newParagraph1.append("Macs: Were any of these resources helpful?");
+					
+					//find the div to put it in
+					var div = document.getElementById("messages");
+					
+					//append the new message
+					div.appendChild(newParagraph1);
+					div.appendChild(yesButton);
+					div.appendChild(noButton);
+					
+				}
+				
+				
+				div.scrollTop = div.scrollHeight
+				
+				document.getElementById(userIn.id).focus();
+				document.getElementById(userIn.id).select();
+				
+			}
+			function enterInput() {
+				// Get the input field
+				var input = document.getElementById("userIn");
+				var userValue = input.value;
+				youAppend(userValue);
+				cursorReset();
+			}
+			
+			console.log('here');
+	
+			
+				// Get the input field
+				var input = document.getElementById("userIn");
+
+				// Execute a function when the user releases a key on the keyboard
+				input.addEventListener("keyup", function(event) {
+				  // Cancel the default action, if needed
+				  event.preventDefault();
+				  // Number 13 is the "Enter" key on the keyboard
+				  if (event.keyCode === 13) {
+					// Trigger the button element with a click
+					document.getElementById("myButton").click();
+				  }
+				});
+		</script>
+	</body>
+</html>

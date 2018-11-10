@@ -1,0 +1,107 @@
+html { 
+  background: url(MixBackground.PNG) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+	#all{
+		width: 25%;
+		position: fixed;
+		bottom: 0;
+		right: 20px;
+		border: 1px solid #075384;
+		border-radius: 10px;
+		margin-bottom: 2px;
+		font: "Arial";
+		background-color: white;
+	}
+	
+	#header{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding-top: 0px;
+		padding-bottom: 0px;
+		font-family: "Arial", sans-serif;
+		color: white;
+		background-color: #075384;
+		text-align: center;
+		font-size: 14px;
+	}
+	
+	#messages{
+
+		font-family: "Arial", sans-serif;
+		background-color: white;
+		color: black;
+		font-size: 14px;
+		overflow-x: scroll;
+		overflow-x: hidden;
+		max-height: 200px;
+		height: 200px;
+		padding-left: 10px;
+		padding-right: 10px;
+		
+	}
+	
+	.youPara{
+		font-family: "Arial", sans-serif;
+		text-align: left;
+		border: 2px solid black;
+		border-radius: 50px;
+		background-color: #075384; 
+		float: right;
+		width: 50%;
+		padding-bottom: 2px;
+		padding-top: 20px;
+		padding-left: 10px;
+		font-size: 14px;
+		position: relative;
+		
+	}
+	#yesButton {
+		margin-left: 10px;
+		margin-top: 35px;
+		float:left;
+	}
+	#noButton {
+		margin-left: 5px;
+		margin-top: 35px;
+		float:left;
+	}
+	.botPara{
+		font-family: "Arial", sans-serif;
+		text-align: left;
+		border-radius: 25px;
+		border: 2px solid black;
+		background-color: gray; 
+		padding-left: 10px;
+		width: 50%;
+		float:left;
+		padding-bottom: 5px;
+		padding-top: 5px;
+		font-size: 14px;
+		
+	}
+	
+	#myButton{
+		
+		margin-left: 15px;
+		
+	}
+	
+	#input{
+		margin-top: 0px;
+		margin-bottom: 0px;
+		padding-top: 0px;
+		padding-bottom: 10px;
+		font-family: "Arial", sans-serif;
+		color: white;
+		/*background-color: #075384;*/
+		text-align: center;
+		font-size: 14px;
+		
+	}
+	
+	
