@@ -7,7 +7,7 @@ and the bottom is the space left for the user to input text
 styles.css:
 - Contains information about the style of the chatbox including fonts, colours, field sizes and spacing 
 
-InceptHTTP.java:
+InterceptHTTP.java:
 - automatic pop up detects when user is not interested in article by looking at scrolling and length of stay on a specific part of page
 - developed to produce a reply to the user
 - Infomation input by the user gets transferred to java
