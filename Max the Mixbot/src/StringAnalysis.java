@@ -9,6 +9,8 @@ import java.util.regex.Pattern;
 
 public class StringAnalysis {
 
+    //keywords from user input
+    private String[] currentKeywords = new String[100];
     //keyword definitions
     private String[] keywords = new String[100]; // manual for now - could be automatically updated later?
     private void keywordDefinitions() {
@@ -67,6 +69,7 @@ public class StringAnalysis {
         //Jack and Hester put your shit here
         String[] articleURLs = new String[100];
         String[] forumURLs = new String[100];
+        this.keyWordFinder(input);
 
         return this.returnString(this.sortURLs(articleURLs, forumURLs));
     }
@@ -126,6 +129,22 @@ public class StringAnalysis {
         catch (Exception E){
             System.err.println(E);
         }
+    }
+
+    public String[] keyWordFinder(String input) {
+        int index = 0;
+        input = input.toLowerCase();
+        String[] holder = input.replaceAll("[^a-zA-Z ]", "").toLowerCase().split("\\s+");
+        int length = holder.length;
+        for (int i=0; i<100; i++) {
+            for (int j=0; j<length; j++) {
+                if (holder[j].equals(keywords[i])) {
+                    currentKeywords[index] = keywords[i];
+                    index++;
+                }
+            }
+        }
+        return currentKeywords;
     }
 
     public ArrayList<String> pullURLs(String text){
