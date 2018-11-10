@@ -41,7 +41,11 @@
 		border-radius: 50px;
 		background-color: #075384; 
 		float: right;
-		width: 50%
+		width: 50%;
+		padding-bottom: 5px;
+		padding-top: 5px;
+		padding-left: 10px;
+		
 		
 	}
 	#botPara{
@@ -51,6 +55,8 @@
 		background-color: gray; 
 		padding-left: 10px;
 		width: 50%;
+		padding-bottom: 5px;
+		padding-top: 5px;
 		
 	}
 	
