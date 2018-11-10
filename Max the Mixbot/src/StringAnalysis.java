@@ -53,7 +53,8 @@ public class StringAnalysis {
 
     public static void main(String[] args) {
         StringAnalysis test = new StringAnalysis();
-        test.analyseString(args[0]);
+        String returnString = test.analyseString(args[0]);
+        // send returnString back to front end
     }
 
     public String analyseString(String input) {
@@ -64,9 +65,10 @@ public class StringAnalysis {
         this.categoryDefinitions();
 
         //Jack and Hester put your shit here
-        String[] urls = new String[100];
+        String[] articleURLs = new String[100];
+        String[] forumURLs = new String[100];
 
-        return this.returnString(this.sortURLs(urls));
+        return this.returnString(this.sortURLs(articleURLs, forumURLs));
     }
 
     private String[] sortURLs(String[] articleURLs, String[] forumURLs) {
@@ -74,6 +76,7 @@ public class StringAnalysis {
         // now - rank by number of times keyword occurs, then order
 
         return new String[]{articleURLs[0], articleURLs[1], forumURLs[0], forumURLs[1]};
+
     }
 
     private String returnString(String[] urls) {
