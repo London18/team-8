@@ -36,7 +36,7 @@
 		
 	}
 	
-	#youPara{
+	.youPara{
 		font-family: "Arial", sans-serif;
 		text-align: left;
 		border: 2px solid black;
@@ -50,7 +50,7 @@
 		font-size: 14px;
 		
 	}
-	#botPara{
+	.botPara{
 		font-family: "Arial", sans-serif;
 		text-align: left;
 		border-radius: 25px;
