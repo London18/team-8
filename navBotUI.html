@@ -10,8 +10,8 @@
 				//var para = document.getElementById("messagePara");
 				
 				//creates new paragraph
-				var newParagraph = document.createElement('p');
-				newParagraph.id = "youPara";
+				var newParagraph = document.createElement('textarea');
+				newParagraph.className = "youPara";
 				
 				//inserts user's text
 				newParagraph.textContent = document.getElementById('userIn').value;
@@ -22,13 +22,19 @@
 				
 				//append the new message
 				div.appendChild(newParagraph);
+				
+				autoGrow(newParagraph);
+				
 				userIn.value="";
 				
 				div.scrollTop = div.scrollHeight
 				
 				document.getElementById(userIn.id).focus();
-				document.getElementById(userIn.id).select();
-				
+				document.getElementById(userIn.id).select();				
+			}
+			function autoGrow(element) {
+				element.style.height = "5px";
+				element.style.height = (element.scrollHeight) + "px";
 			}
 			function cursorReset() {
 				document.getElementById(userIn.id).focus();
@@ -44,7 +50,7 @@
 				
 				//creates new paragraph
 				var newParagraph = document.createElement('p');
-				newParagraph.id = "botPara";
+				newParagraph.className = "botPara";
 				
 				//inserts user's text
 				newParagraph.textContent = document.getElementById('botIn').value;
@@ -114,7 +120,7 @@
 			<h5>NavBot</h5>
 		</div>
 		<div id="messages">
-			<p id="botPara">Macs: How can I help you?</p>
+			<p class="botPara">Macs: How can I help you?</p>
 		</div>
 		<div id="input">
 			<input id="userIn" type="text" name="userInput"><input id="myButton" type="button" onclick="youAppend()" value="Send"/>
