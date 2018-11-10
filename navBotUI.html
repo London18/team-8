@@ -3,11 +3,11 @@
 	<head>
 		<link rel="stylesheet" type="text/css" href="styles.css">
 		<script type="text/javascript">
-			function append() {
+			function youAppend() {
 				//var newText = document.createTextNode(document.getElementById('userIn').value);
 
+				//int count = 0;
 				//var para = document.getElementById("messagePara");
-				
 				
 				//creates new paragraph
 				var newParagraph = document.createElement('p');
@@ -23,6 +23,66 @@
 				//append the new message
 				div.appendChild(newParagraph);
 				userIn.value="";
+			}
+		</script>
+		<script type="text/javascript">
+			function botAppend() {
+			
+				//count += 1;
+				//var newText = document.createTextNode(document.getElementById('userIn').value);
+
+				//var para = document.getElementById("messagePara");
+				
+				
+				//creates new paragraph
+				var newParagraph = document.createElement('p');
+				newParagraph.id = "botPara";
+				
+				//inserts user's text
+				newParagraph.textContent = document.getElementById('botIn').value;
+				newParagraph.prepend("Macs: ");
+				
+				//find the div to put it in
+				var div = document.getElementById("messages");
+				
+				//append the new message
+				div.appendChild(newParagraph)
+				
+			}
+		</script>
+		<script type="text/javascript">
+			function printButton() {
+			
+				//count += 1;
+				//var newText = document.createTextNode(document.getElementById('userIn').value);
+
+				//var para = document.getElementById("messagePara");
+				
+				
+				var newParagraph = document.createElement('p');
+				newParagraph.id = "botPara";
+				
+				//creates new paragraph
+				var yesButton = document.createElement('input');
+				yesButton.id = "yesButton";
+				yesButton.type = "button";
+				yesButton.value = "yes";
+				//do input thing
+				var noButton = document.createElement('input');
+				noButton.id = "noButton";
+				noButton.type = "button";
+				noButton.value = "no";
+				
+				//inserts Macs' text
+				newParagraph.append("Macs: Were any of these resources helpful?");
+				
+				//find the div to put it in
+				var div = document.getElementById("messages");
+				
+				//append the new message
+				div.appendChild(newParagraph);
+				div.appendChild(yesButton);
+				div.appendChild(noButton);
 				
 			}
 		</script>
@@ -33,10 +93,10 @@
 			<h5>NavBot</h5>
 		</div>
 		<div id="messages">
-			<p id="messagePara">Macs: How can I help you?</p>
+			<p id="botPara">Macs: How can I help you?</p>
 		</div>
 		<div id="input">
-			<input id="userIn" type="text" name="userInput"><input type="button" onclick="append()" value="Send"/>
+			<input id="userIn" type="text" name="userInput"><input type="button" onclick="youAppend()" value="Send"/>
 		</div>
 	</div>
 	</body>
