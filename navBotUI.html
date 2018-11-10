@@ -2,8 +2,20 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="styles.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script type="text/javascript">
 			var count = 0;
+			funtion query(input) {
+				var stringQuery = "localhost:8080/chat?userInput=".append(input);
+			
+				$(document).ready(function() {
+					$.ajax({
+						url: stringQuery
+					}).then(function(userInput)) {
+						botAppend(userInput);
+					});
+				});
+			}
 			function youAppend() {
 				//var newText = document.createTextNode(document.getElementById('userIn').value);
 
@@ -33,13 +45,7 @@
 				document.getElementById(userIn.id).focus();
 				document.getElementById(userIn.id).select();	
 				
-				var x = 10;
-				var y = null;
-				setTimeout(function(){
-					x=x*3+2;
-					y=x/2;
-					},1000);
-				printButton();
+				query(document.getElementById('userIn').value);
 				
 				//put the thing=== that get files from java and also get response from them
 				sendToJava();
@@ -47,6 +53,7 @@
 				var textToPrint = getFromJava();
 				botAppend(resultPara.id);
 				
+				printButton();
 			}
 			function sendToJava(message) {
 				var form = document.createElement('form');
@@ -76,6 +83,10 @@
 					
 				if(message === "Glad I could help!") {
 					count = 0;
+					
+					//ask if they want to save the conversation and files
+					//if no then tell java then they delete
+					//if yes then send the email that the use inputs
 				}
 					
 				//count += 1;
@@ -139,6 +150,12 @@
 					div.appendChild(noButton);
 					
 				}
+				
+				
+				div.scrollTop = div.scrollHeight
+				
+				document.getElementById(userIn.id).focus();
+				document.getElementById(userIn.id).select();
 				
 			}
 			function enterInput() {
