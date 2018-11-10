@@ -1,13 +1,15 @@
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.util.ArrayList;
 
 public class StringAnalysis {
 
     //keyword definitions
     private String[] keywords = new String[100]; // manual for now - could be automatically updated later?
+    //keywords in input string
+    private String[] currentKeywords = new String[100];
+
     private void keywordDefinitions() {
         keywords[0] = "depression";
         keywords[1] = "drugs";
@@ -24,77 +26,32 @@ public class StringAnalysis {
         //etc.
     }
 
-    //category definitions
-    private String[] categories = new String[50];
-    private void categoryDefinitions() {
-        categories[0] = "Abuse";
-        categories[1] = "Bereavement";
-        categories[2] = "Care";
-        categories[3] = "Careers & Study";
-        categories[4] = "Child Care";
-        categories[5] = "Disability Support";
-        categories[6] = "Domestic Violence";
-        categories[7] = "Drugs & Alcohol";
-        categories[8] = "Relationships";
-        categories[9] = "General Health";
-        categories[10] = "Housing";
-        categories[11] = "Legal & Rights";
-        categories[12] = "Mental Health";
-        categories[13] = "Money";
-        categories[14] = "Sexual Health";
-        categories[15] = "Sexuality";
-        categories[16] = "Self Harm";
-        //etc
-    }
-
     public static void main(String[] args) {
         StringAnalysis test = new StringAnalysis();
-        test.analyseString(args[0]);
+        test.keywordDefinitions();
+        test.analyseString("I hate uni which has driven me to drink sleep and money");
+        test.constructArticleAPICallSearchTerm("grief");
     }
 
     public String analyseString(String input) {
+        currentKeywords = keyWordFinder(input);
         //call all other methods from this
         if (characterCount(input))
             return "Could you explain a bit more?";
-        this.keywordDefinitions();
-        this.categoryDefinitions();
-
-        //Jack and Hester put your shit here
-        String[] urls = new String[100];
-
-        return this.returnString(this.sortURLs(urls));
-    }
-
-    private String[] sortURLs(String[] urls) {
-        return urls;
-    }
-
-    private String returnString(String[] urls) {
-        return urls;
+        return input;
     }
 
     private boolean characterCount(String input) {
         return input.length() < 20;
     }
 
-    public void articleSearch(String keyword){
-        String url = "https://www.themix.org.uk/wp-json/wp/v2/posts?categories=28&search=";
-
-        constructAPICall(keyword, url);
-    }
-
-    public void forumSearch(String keyword){
-        String url = "";
-
-        constructAPICall(keyword, url);
-    }
-
-    public void constructAPICall(String searchTerm, String searchURL){
+    public void  constructArticleAPICallSearchTerm(String searchTerm){
 
         //Sets the https statement to be processed based on current API.
-        String search = searchURL + searchTerm;
+        String coreStatement = "https://www.themix.org.uk/wp-json/wp/v2/posts?categories=28&search=";
+        String search = coreStatement + searchTerm;
 
-        //Constructs HTTP object
+        //Contructs HTTP object
         HttpURLConnection connection = null;
 
         try{
@@ -105,16 +62,24 @@ public class StringAnalysis {
             connection = (HttpURLConnection) url.openConnection();
             connection.connect();
 
-            BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-
-            String textFromPage;
-            while ((textFromPage = in.readLine()) != null){
-                System.out.println(textFromPage);
-            }
-            in.close();
         }
         catch (Exception E){
             System.err.println(E);
         }
+    }
+
+    // finds the key words in the input string
+    public String[] keyWordFinder(String input) {
+        int index = 0;
+        input = input.toLowerCase();
+        String[] holder = input.split(" ");
+        for (int i=0; i<100; i++) {
+
+            if (input.contains(kW)) {
+                currentKeywords[index] = keywords[i];
+                index++;
+            }
+        }
+        return currentKeywords;
     }
 }
