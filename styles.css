@@ -1,3 +1,11 @@
+html { 
+  background: url(MixBackground.PNG) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
 	#all{
 		width: 25%;
 		position: fixed;
@@ -7,6 +15,7 @@
 		border-radius: 10px;
 		margin-bottom: 10px;
 		font: "Arial";
+		background-color: white;
 	}
 	
 	#header{
